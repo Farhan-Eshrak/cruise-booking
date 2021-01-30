@@ -51,6 +51,10 @@ function countTotal() {
 
     const grandTotal = totalPrice + tax;
     document.getElementById("total").innerText = '$' + grandTotal;
+    if(grandTotal <= 0 ){
+        alert("error! Please enter valid ticket number")
+        location.reload();
+    }
 
     document.getElementById("first").innerText = firstCount
     document.getElementById("economy").innerText = economyCount
