@@ -11,7 +11,7 @@ function place() {
     let to = document.getElementById("to").value;
 
     if (depu == '' || to == '') {
-        alert("You didnt set your destination. Press ok to go as default")
+        alert("You didnt set your destination. Press ok to go as default!")
     }
     else {
         document.getElementById("dep").innerText = depu;
@@ -26,9 +26,9 @@ function travel() {
     const dDay = document.getElementById("d-day").value;
     const rDay = document.getElementById("r-day").value;
     if (dDay == '' || rDay == '') {
-        alert('Travelling deuration not defined. Please set departure and return date. if not dates will be set as not defined')
-        document.getElementById("depurture-date").innerText = "not defined";
-        document.getElementById("return-date").innerText = "not defined";
+        alert('Travelling deuration not defined. Please set departure and return date. if not dates will be set as default!')
+        document.getElementById("depurture-date").innerText = new Date();
+        document.getElementById("return-date").innerText = "10 days after depurture";
     }
     else {
         document.getElementById("depurture-date").innerText = dDay;
@@ -51,7 +51,7 @@ function countTotal() {
 
     const grandTotal = totalPrice + tax;
     document.getElementById("total").innerText = '$' + grandTotal;
-    if(grandTotal <= 0 ){
+    if (grandTotal <= 0) {
         alert("error! Please enter valid ticket number")
         location.reload();
     }
@@ -99,5 +99,21 @@ function economy(isIncrease) {
     console.log(econoyTotal);
     countTotal();
 }
-
-
+//swal function
+function check(){
+    const total =parseFloat(document.getElementById("total").innerText);
+    if(total == 0){
+        alert("Input invalid");
+        location.reload();
+    }
+    else{
+        date();
+        place();
+        travel();
+    }
+}
+function booked() {
+    swal({ icon: "success", text: "Booked", }).then(function () {
+        location.reload();
+    });
+}
